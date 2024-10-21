@@ -1,12 +1,12 @@
 FROM node:18-alpine as build
 
+ARG VITE_APP_BASE_URL
+ENV VITE_APP_BASE_URL=$VITE_APP_BASE_URL
+
 WORKDIR /app
-COPY package.json package-lock.json ./
+COPY package*.json ./
 RUN npm install
-COPY src ./src
-COPY public ./public
-COPY index.html ./
-COPY vite.config.js ./
+COPY . .
 RUN npm run build
 
 FROM nginx:alpine

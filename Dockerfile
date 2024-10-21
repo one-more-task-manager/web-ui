@@ -4,8 +4,9 @@ ARG VITE_APP_BASE_URL
 ENV VITE_APP_BASE_URL=$VITE_APP_BASE_URL
 
 WORKDIR /app
-COPY . .
+COPY package.json package-lock.json ./
 RUN npm install
+COPY . .
 RUN npm run build
 
 FROM nginx:alpine

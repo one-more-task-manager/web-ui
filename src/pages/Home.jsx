@@ -32,19 +32,24 @@ function Home({user}) {
 
     return (
         <>
-            <Header user={user}/>
-            <Container maxWidth={"lg"}>
-                <CreateTodo onCreate={fetchTodos}/>
+            <Header user={user} />
+            <Container maxWidth="xl">
+                <CreateTodo onCreate={fetchTodos} />
                 <Box
                     sx={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
+                        display: 'grid',
                         gap: 3,
                         mt: 4,
+                        gridTemplateColumns: {
+                            xs: 'repeat(1, 1fr)',
+                            sm: 'repeat(2, 1fr)',
+                            md: 'repeat(3, 1fr)',
+                            lg: 'repeat(4, 1fr)',
+                        },
                     }}
                 >
-                    {todos.map(todo => (
-                        <Box key={todo.id} sx={{width: 300}}>
+                    {todos.map((todo) => (
+                        <Box key={todo.id}>
                             <Todo
                                 id={todo.id}
                                 title={todo.title}

@@ -128,13 +128,15 @@ function Todo({id, title, onDelete}) {
                     ) : (
                         <Typography
                             sx={{
+                                display: 'block',
+                                margin: '0 auto',
+                                maxWidth: '250px',
                                 color: 'text.secondary',
                                 fontSize: 18,
                                 overflow: 'hidden',
                                 alignItems: 'center',
                                 textOverflow: 'ellipsis',
-                                display: '-webkit-box',
-                                WebkitLineClamp: '2',
+                                WebkitLineClamp: '1',
                                 WebkitBoxOrient: 'vertical',
                                 cursor: 'pointer',
                         }}

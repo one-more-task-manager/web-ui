@@ -6,6 +6,7 @@ import {SignIn} from "./pages/auth/SignIn.jsx";
 import {useEffect, useState} from "react";
 import NotFound from "./pages/NotFound.jsx";
 import {AuthAPI} from "./API/AuthAPI.js";
+import {Box, CircularProgress} from "@mui/material";
 
 
 function App() {
@@ -28,7 +29,18 @@ function App() {
     };
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return (
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '100vh',
+                }}
+            >
+                <CircularProgress />
+            </Box>
+        );
     }
 
     return (

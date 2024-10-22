@@ -32,7 +32,7 @@ function SignIn({onSignIn}) {
             localStorage.setItem("refreshToken", refreshToken);
             onSignIn();
         } catch (error) {
-            const errorMessage = error.response?.message || "Error occurred during signing in"
+            const errorMessage = error.response?.data?.message || "Error occurred during signing in";
             setErrorMessage(errorMessage);
         }
     };

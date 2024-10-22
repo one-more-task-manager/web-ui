@@ -102,9 +102,11 @@ function Task({todoId, task, onTaskUpdated, onTaskDeleted}) {
                     <Typography
                         onDoubleClick={() => setIsTaskTitleEditing(true)}
                         sx={{
+                            display: 'block',
+                            margin: '0 auto',
+                            maxWidth: '200px',
                             overflow: 'hidden',
                             textOverflow: 'ellipsis',
-                            display: '-webkit-box',
                             WebkitLineClamp: '2',
                             WebkitBoxOrient: 'vertical',
                             cursor: 'pointer',

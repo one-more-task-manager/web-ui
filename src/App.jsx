@@ -3,9 +3,9 @@ import {Home} from './pages/Home.jsx';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom';
 import {SignUp} from "./pages/auth/SignUp.jsx";
 import {SignIn} from "./pages/auth/SignIn.jsx";
-import {UserAPI} from "./API/UserAPI.js";
 import {useEffect, useState} from "react";
 import NotFound from "./pages/NotFound.jsx";
+import {AuthAPI} from "./API/AuthAPI.js";
 
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
 
     const fetchUser = async () => {
         try {
-            const user = await UserAPI.get();
+            const user = await AuthAPI.me();
             setUser(user);
         } catch (error) {
             console.error("Failed to fetch user:", error);
@@ -49,8 +49,6 @@ function App() {
                         <Route path="*" element={<NotFound />} />
                     </>
                 )}
-
-
             </Routes>
         </Router>
     );

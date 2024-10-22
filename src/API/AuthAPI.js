@@ -15,6 +15,11 @@ class AuthAPI {
         });
         return response.data;
     }
+
+    static async me() {
+        const response = await axiosInstance.get(`/auth/me`);
+        return response.data;
+    }
 }
 
 export {AuthAPI};

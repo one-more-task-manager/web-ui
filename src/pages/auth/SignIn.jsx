@@ -32,7 +32,10 @@ function SignIn({onSignIn}) {
             localStorage.setItem("refreshToken", refreshToken);
             onSignIn();
         } catch (error) {
-            setErrorMessage(error.response?.data?.message || "An error occurred during sign-in");
+            const errorMessage = error.response.data["email_validation-error"]
+                || error.response.data["password_validation-error"]
+                || "Failed to sign in. Please try again.";
+            setErrorMessage(errorMessage);
         }
     };
 

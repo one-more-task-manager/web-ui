@@ -1,18 +1,12 @@
 FROM node:18-alpine as build
-
-ARG VITE_APP_BASE_URL
-ENV VITE_APP_BASE_URL=$VITE_APP_BASE_URL
-
 WORKDIR /app
-COPY package.json package-lock.json ./
+COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
 
-FROM nginx:alpine
+FROM nginx:1.21.6-alpine
 COPY --from=build /app/dist /usr/share/nginx/html
-COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
-COPY .env.sh /docker-entrypoint.d/env.sh
+COPY /nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY env.sh /docker-entrypoint.d/env.sh
 RUN chmod +x /docker-entrypoint.d/env.sh
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]

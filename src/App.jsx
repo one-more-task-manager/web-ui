@@ -5,6 +5,8 @@ import {SignUp} from "./pages/auth/SignUp.jsx";
 import {SignIn} from "./pages/auth/SignIn.jsx";
 import {UserAPI} from "./API/UserAPI.js";
 import {useEffect, useState} from "react";
+import NotFound from "./pages/NotFound.jsx";
+
 
 function App() {
     const [user, setUser] = useState(null);
@@ -35,15 +37,20 @@ function App() {
                 {user ? (
                     <>
                         <Route path="/" element={<Home user={user} />}/>
-                        <Route path="*" element={<Navigate to="/" replace/>}/>
+                        <Route path="/sign-in" element={<Navigate to="/" replace />}/>
+                        <Route path="/sign-up" element={<Navigate to="/" replace />}/>
+                        <Route path="*" element={<NotFound />} />
                     </>
                 ) : (
                     <>
                         <Route path="/sign-up" element={<SignUp/>}/>
                         <Route path="/sign-in" element={<SignIn onSignIn={fetchUser}/>}/>
-                        <Route path="*" element={<SignIn onSignIn={fetchUser}/>}/>
+                        <Route path="/" element={<Navigate to="/sign-in" replace />}/>
+                        <Route path="*" element={<NotFound />} />
                     </>
                 )}
+
+
             </Routes>
         </Router>
     );
